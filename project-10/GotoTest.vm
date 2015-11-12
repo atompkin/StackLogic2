@@ -1,0 +1,38 @@
+push constant 300 // leaves that there, never popped
+push constant 3
+neg               // leaves -3 on the stack also
+push constant 6
+neg
+push constant 3
+neg
+lt                // true
+push constant 4
+push constant 4
+eq                // true
+and               // true
+not               // false
+if-goto L1        // does not 'goto'
+push constant 0
+push constant 7
+eq                // false
+push constant 8
+push constant 5
+gt                // true
+or                // true
+if-goto L2        // jumps
+push constant 5
+label L4
+push constant 6   // puts second 6 on stack
+eq                // true
+if-goto end       // jumps
+label L1
+push constant 100
+goto end
+label L2
+push constant 200 // leaves that there, never popped
+push constant 6   // puts 6 on stack for later
+goto L4           // jumps back up
+label end
+push constant 1
+push constant 2
+lt                // true, leaves -1 on stack
